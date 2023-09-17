@@ -1,4 +1,4 @@
-package lds.rentacar_springboot_lds.cliente;
+package lds.rentacar_springboot_lds.services;
 
 public record DadosRendimentoCliente(int id, double valor) {
   

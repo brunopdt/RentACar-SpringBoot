@@ -1,14 +1,18 @@
-package lds.rentacar_springboot_lds.cliente;
+package lds.rentacar_springboot_lds.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
-import lds.rentacar_springboot_lds.usuario.DadosUsuario;
-import lds.rentacar_springboot_lds.usuario.Usuario;
+import lds.rentacar_springboot_lds.services.DadosCadastroCliente;
+import lds.rentacar_springboot_lds.services.DadosRendimentoCliente;
+import lds.rentacar_springboot_lds.services.DadosUsuario;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "cpf")
+
 public class Cliente {
 
   private String nome;

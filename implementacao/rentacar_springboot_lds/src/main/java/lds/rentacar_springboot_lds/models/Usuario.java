@@ -1,4 +1,6 @@
-package lds.rentacar_springboot_lds.usuario;
+package lds.rentacar_springboot_lds.models;
+
+import lds.rentacar_springboot_lds.services.DadosUsuario;
 
 public class Usuario {
   private String login;
