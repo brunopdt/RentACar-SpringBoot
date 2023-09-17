@@ -18,11 +18,14 @@ public class ClienteController {
   @Autowired
   private ClienteRepository _repository;
 
-
+  @GetMapping
+  public String helloWorld() {
+    return "Hello World!";
+  }
 
   @PostMapping
-  public void cadastrar(@RequestBody DadosCadastroCliente dados){
+  public void cadastrar(@RequestBody DadosCadastroCliente dados) {
     _repository.save(new Cliente(dados));
   }
-  
+
 }

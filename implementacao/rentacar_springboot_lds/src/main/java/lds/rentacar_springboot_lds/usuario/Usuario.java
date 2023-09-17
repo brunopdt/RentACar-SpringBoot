@@ -4,7 +4,7 @@ public class Usuario {
   private String login;
   private String senha;
 
-  public Usuario(DadosUsuario dados){
+  public Usuario(DadosUsuario dados) {
     this.login = dados.login();
     this.senha = dados.senha();
   }
