@@ -77,9 +77,12 @@ public class ClienteController {
   }
 
   @DeleteMapping("/{cpf}")
+  @Transactional
   public void deleteFromCpf(@PathVariable String cpf) {
-    _repository.findById(cpf)
+    Cliente cliente = _repository.findById(cpf)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado"));
+    _repositoryUsuario.deleteById(cliente.getUsuario_login());
+    _repositoryRendimento.deleteById(cpf);
     _repository.deleteById(cpf);
   }
 

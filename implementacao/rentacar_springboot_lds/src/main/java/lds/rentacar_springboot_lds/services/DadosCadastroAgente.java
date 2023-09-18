@@ -1,5 +1,6 @@
 package lds.rentacar_springboot_lds.services;
 
-public record DadosCadastroAgente(String CNPJ, String nomeFantasia, String login, String senha) {
-}
+import lds.rentacar_springboot_lds.models.TipoAgente;
 
+public record DadosCadastroAgente(String cnpj, String nomeFantasia, TipoAgente tipo, String login, String senha) {
+}
