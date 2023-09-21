@@ -20,7 +20,9 @@ public class Usuario {
   }
 
   private String senha;
-
+  public String getsenha(){
+    return this.senha;
+  }
   public Usuario(DadosUsuario dados) {
     this.login = dados.login();
     this.senha = dados.senha();
