@@ -25,9 +25,9 @@ public class Cliente {
   private String endereco;
   private String profissao;
   private String entidadeEmpregadora;
-  private String usuario_login;
+  private String usuariologin;
 
-  public Cliente(DadosCadastroCliente dados, String usuario_login) {
+  public Cliente(DadosCadastroCliente dados, String usuariologin) {
     this.nome = dados.nome();
     this.cpf = dados.cpf();
     this.rg = dados.rg();
@@ -35,7 +35,7 @@ public class Cliente {
     this.profissao = dados.profissao();
     this.entidadeEmpregadora = dados.entidadeEmpregadora();
 
-    this.usuario_login = usuario_login;
+    this.usuariologin = usuariologin;
   }
 
   public Cliente updateCliente(DadosCadastroCliente dados) {

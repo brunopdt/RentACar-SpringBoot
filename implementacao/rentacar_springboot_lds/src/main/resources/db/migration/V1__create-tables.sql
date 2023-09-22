@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS `rentacar`.`Cliente` (
   `nome` VARCHAR(45) NOT NULL,
   `profissao` VARCHAR(45) NOT NULL,
   `entidade_empregadora` VARCHAR(45) NOT NULL,
-  `Usuario_login` VARCHAR(45) NOT NULL,
+  `usuariologin` VARCHAR(45) NOT NULL,
   UNIQUE INDEX `rg_UNIQUE` (`rg` ASC) VISIBLE,
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE,
   PRIMARY KEY (`cpf`),
-  INDEX `fk_Cliente_Usuario1_idx` (`Usuario_login` ASC) VISIBLE,
+  INDEX `fk_Cliente_Usuario1_idx` (`usuariologin` ASC) VISIBLE,
   CONSTRAINT `fk_Cliente_Usuario1`
-    FOREIGN KEY (`Usuario_login`)
+    FOREIGN KEY (`usuariologin`)
     REFERENCES `rentacar`.`Usuario` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -88,12 +88,12 @@ CREATE TABLE IF NOT EXISTS `rentacar`.`Agente` (
   `cnpj` VARCHAR(14) NOT NULL,
   `nome_fantasia` VARCHAR(45) NULL,
   `tipo` SET("EMPRESA", "BANCO") NULL,
-  `Usuario_login` VARCHAR(45) NOT NULL,
+  `usuariologin` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cnpj`),
   UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) VISIBLE,
-  INDEX `fk_Agente_Usuario1_idx` (`Usuario_login` ASC) VISIBLE,
+  INDEX `fk_Agente_Usuario1_idx` (`usuariologin` ASC) VISIBLE,
   CONSTRAINT `fk_Agente_Usuario1`
-    FOREIGN KEY (`Usuario_login`)
+    FOREIGN KEY (`usuariologin`)
     REFERENCES `rentacar`.`Usuario` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

@@ -19,15 +19,15 @@ public class Agente {
     private String nomeFantasia;
     @Id
     private String cnpj;
-    private String usuario_login;
+    private String usuariologin;
     private TipoAgente tipo;
 
-    public Agente(DadosCadastroAgente dados, String usuario_login) {
+    public Agente(DadosCadastroAgente dados, String usuariologin) {
         this.nomeFantasia = dados.nomeFantasia();
         this.cnpj = dados.cnpj();
         this.tipo = dados.tipo();
 
-        this.usuario_login = usuario_login;
+        this.usuariologin = usuariologin;
     }
 
     public Agente updateCliente(DadosCadastroAgente dados) {

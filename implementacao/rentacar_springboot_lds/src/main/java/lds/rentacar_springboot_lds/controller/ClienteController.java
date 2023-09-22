@@ -81,7 +81,7 @@ public class ClienteController {
   public void deleteFromCpf(@PathVariable String cpf) {
     Cliente cliente = _repository.findById(cpf)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado"));
-    _repositoryUsuario.deleteById(cliente.getUsuario_login());
+    _repositoryUsuario.deleteById(cliente.getUsuariologin());
     _repositoryRendimento.deleteById(cpf);
     _repository.deleteById(cpf);
   }

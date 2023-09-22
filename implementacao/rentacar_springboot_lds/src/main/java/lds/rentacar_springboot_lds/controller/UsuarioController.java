@@ -34,22 +34,25 @@ public class UsuarioController {
     @Autowired
     private AgenteRepository agenteRepository;
 
-    @PostMapping("/login")
+    @GetMapping("/helloWorld")
+    public String helloWorld() {
+        return "Hello World!";
+    }
+
+    @PostMapping()
     public ResponseEntity<?> login(@RequestBody DadosUsuario login) throws Exception {
         Optional<Usuario> existingUser = usuarioRepository.findById(login.login());
         if (existingUser.isPresent() && existingUser.get().getsenha().equals(login.senha())) {
-            /*Optional<Cliente> existingClient = clienteRepository.findByUsuarioLogin(login.login());
-            Optional<Agente> existingAgent = agenteRepository.findByUsuarioLogin(login.login());
-            if (existingClient.isPresent()) {
-                return ResponseEntity.ok(existingClient.get());
-            } else if (existingAgent.isPresent()) {
-                return ResponseEntity.ok(existingAgent.get());
+            Cliente existingClient = clienteRepository.findByusuariologin(login.login());
+            Agente existingAgent = agenteRepository.findByusuariologin(login.login());
+            if (existingClient != null) {
+                return ResponseEntity.ok(existingClient);
+            } else if (existingAgent != null) {
+                return ResponseEntity.ok(existingAgent);
             } else {
                 throw new Exception("Usuário não encontrado");
 
-            
-            }*/
-            return ResponseEntity.ok(existingUser.get());
+            }
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

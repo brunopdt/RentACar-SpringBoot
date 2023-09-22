@@ -64,7 +64,7 @@ public class AgenteController {
   public void deleteFromCnpj(@PathVariable String cnpj) {
     Agente agente = _repository.findById(cnpj)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Agente não encontrado"));
-    _repositoryUsuario.deleteById(agente.getUsuario_login());
+    _repositoryUsuario.deleteById(agente.getUsuariologin());
     _repository.deleteById(cnpj);
   }
 
