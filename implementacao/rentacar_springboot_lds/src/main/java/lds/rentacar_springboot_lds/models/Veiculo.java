@@ -9,17 +9,16 @@ import lds.rentacar_springboot_lds.services.DadosVeiculo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name= "Veiculo")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Veiculo")
 public class Veiculo {
 
+  
+  private String placa;
   @Id
   private String matricula;
-
-  private String placa;
-  
   private String marca;
   private String modelo;
 
