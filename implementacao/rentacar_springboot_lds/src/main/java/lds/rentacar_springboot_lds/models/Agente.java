@@ -20,7 +20,7 @@ public class Agente {
     @Id
     private String cnpj;
     private String usuariologin;
-    private TipoAgente tipo;
+    private String tipo;
 
     public Agente(DadosCadastroAgente dados, String usuariologin) {
         this.nomeFantasia = dados.nomeFantasia();

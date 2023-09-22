@@ -7,9 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lds.rentacar_springboot_lds.services.DadosRendimentoCliente;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "Rendimentos")
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Rendimentos")

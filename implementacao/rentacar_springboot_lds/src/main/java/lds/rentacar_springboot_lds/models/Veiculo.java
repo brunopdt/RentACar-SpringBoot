@@ -1,21 +1,20 @@
 package lds.rentacar_springboot_lds.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lds.rentacar_springboot_lds.services.DadosVeiculo;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name= "Veiculo")
+@Entity(name = "Veiculo")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Table(name = "Veiculo")
 public class Veiculo {
 
-  
   private String placa;
   @Id
   private String matricula;

@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `rentacar`.`Pedido` (
   `data_inicio` DATE NOT NULL,
   `data_final` DATE NOT NULL,
   `Cliente_cpf` VARCHAR(11) NOT NULL,
-  `Agente_cnpj` VARCHAR(14) NOT NULL,
+  `Agente_cnpj` VARCHAR(14),
   PRIMARY KEY (`idPedido`),
   UNIQUE INDEX `idPedido_UNIQUE` (`idPedido` ASC) VISIBLE,
   INDEX `fk_Pedido_Veiculo1_idx` (`Veiculo_matricula` ASC) VISIBLE,

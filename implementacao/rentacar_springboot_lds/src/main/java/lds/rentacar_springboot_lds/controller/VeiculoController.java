@@ -12,12 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lds.rentacar_springboot_lds.models.Agente;
-import lds.rentacar_springboot_lds.models.Cliente;
-import lds.rentacar_springboot_lds.models.Usuario;
 import lds.rentacar_springboot_lds.models.Veiculo;
 import lds.rentacar_springboot_lds.repositories.VeiculoRepository;
 import lds.rentacar_springboot_lds.services.DadosVeiculo;
@@ -29,7 +25,7 @@ public class VeiculoController {
   @Autowired
   private VeiculoRepository _repository;
 
-   @GetMapping("/helloWorld")
+  @GetMapping("/helloWorld")
   public String helloWorld() {
     return "Hello World!";
   }
@@ -41,19 +37,19 @@ public class VeiculoController {
     _repository.save(veiculo);
 
   }
-  
+
   @GetMapping
-  public ResponseEntity<List<Veiculo>> getAll(){
+  public ResponseEntity<List<Veiculo>> getAll() {
     return ResponseEntity.ok(_repository.findAll());
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Optional<Veiculo>> getById(@PathVariable String id){
+  public ResponseEntity<Optional<Veiculo>> getById(@PathVariable String id) {
     Optional<Veiculo> existingVeiculo = _repository.findById(id);
-        if (existingVeiculo.isPresent()) {
-          return ResponseEntity.ok(existingVeiculo);
-        } else {
-          return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    if (existingVeiculo.isPresent()) {
+      return ResponseEntity.ok(existingVeiculo);
+    } else {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
   }
 }
