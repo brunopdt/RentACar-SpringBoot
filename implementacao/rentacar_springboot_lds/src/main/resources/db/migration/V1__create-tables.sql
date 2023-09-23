@@ -104,7 +104,7 @@ ENGINE = InnoDB;
 -- Table `rentacar`.`Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rentacar`.`Pedido` (
-  `idPedido` INT NOT NULL,
+  `idPedido` INT NOT NULL AUTO_INCREMENT,
   `Status` SET("EM_ANALISE", "APROVADO", "REPROVADO") NOT NULL,
   `Veiculo_matricula` VARCHAR(45) NOT NULL,
   `data_inicio` DATE NOT NULL,
