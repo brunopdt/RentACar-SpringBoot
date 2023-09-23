@@ -66,11 +66,11 @@ ENGINE = InnoDB;
 -- Table `rentacar`.`Rendimentos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rentacar`.`Rendimentos` (
-  `idRendimentos` INT NOT NULL AUTO_INCREMENT,
+  `id_rendimentos` INT NOT NULL AUTO_INCREMENT,
   `valor` DOUBLE NULL,
   `Cliente_cpf` VARCHAR(11) NOT NULL,
-  PRIMARY KEY (`idRendimentos`),
-  UNIQUE INDEX `idRendimentos_UNIQUE` (`idRendimentos` ASC) VISIBLE,
+  PRIMARY KEY (`id_rendimentos`),
+  UNIQUE INDEX `id_rendimentos_UNIQUE` (`id_rendimentos` ASC) VISIBLE,
   UNIQUE INDEX `cliente_cpf_UNIQUE` (`valor` ASC) VISIBLE,
   INDEX `fk_Rendimentos_Cliente_idx` (`Cliente_cpf` ASC) VISIBLE,
   CONSTRAINT `fk_Rendimentos_Cliente`
@@ -104,15 +104,15 @@ ENGINE = InnoDB;
 -- Table `rentacar`.`Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rentacar`.`Pedido` (
-  `idPedido` INT NOT NULL AUTO_INCREMENT,
-  `Status` SET("EM_ANALISE", "APROVADO", "REPROVADO") NOT NULL,
-  `Veiculo_matricula` VARCHAR(45) NOT NULL,
+  `id_pedido` INT NOT NULL AUTO_INCREMENT,
+  `status` SET("EM_ANALISE", "APROVADO", "REPROVADO") NOT NULL,
+  `veiculo_matricula` VARCHAR(45) NOT NULL,
   `data_inicio` DATE NOT NULL,
   `data_final` DATE NOT NULL,
   `Cliente_cpf` VARCHAR(11) NOT NULL,
   `Agente_cnpj` VARCHAR(14),
-  PRIMARY KEY (`idPedido`),
-  UNIQUE INDEX `idPedido_UNIQUE` (`idPedido` ASC) VISIBLE,
+  PRIMARY KEY (`id_pedido`),
+  UNIQUE INDEX `id_pedido_UNIQUE` (`id_pedido` ASC) VISIBLE,
   INDEX `fk_Pedido_Veiculo1_idx` (`Veiculo_matricula` ASC) VISIBLE,
   INDEX `fk_Pedido_Cliente1_idx` (`Cliente_cpf` ASC) VISIBLE,
   INDEX `fk_Pedido_Agente1_idx` (`Agente_cnpj` ASC) VISIBLE,
@@ -139,15 +139,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rentacar`.`Contrato` (
   `id` INT NOT NULL,
-  `Pedido_idPedido` INT NOT NULL,
+  `pedido_id_pedido` INT NOT NULL,
   `valor` DOUBLE NOT NULL,
   `proprietario_veiculo` SET("EMPRESA", "CLIENTE", "BANCO") NOT NULL,
   `credito_emitido` DOUBLE NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  INDEX `fk_Contrato_Pedido1_idx` (`Pedido_idPedido` ASC) VISIBLE,
+  INDEX `fk_Contrato_Pedido1_idx` (`Pedido_id_pedido` ASC) VISIBLE,
   CONSTRAINT `fk_Contrato_Pedido1`
-    FOREIGN KEY (`Pedido_idPedido`)
-    REFERENCES `rentacar`.`Pedido` (`idPedido`)
+    FOREIGN KEY (`Pedido_id_pedido`)
+    REFERENCES `rentacar`.`Pedido` (`id_pedido`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

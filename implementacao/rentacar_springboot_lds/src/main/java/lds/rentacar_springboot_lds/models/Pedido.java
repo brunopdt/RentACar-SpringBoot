@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lds.rentacar_springboot_lds.services.DadosCadastroPedido;
+import lds.rentacar_springboot_lds.services.DadosEditPedido;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,12 @@ public class Pedido {
     this.data_inicio = dados.data_inicio();
     this.data_final = dados.data_final();
     this.Cliente_cpf = dados.cliente_cpf();
+  }
+
+  public Pedido editarPedido(DadosEditPedido dados) {
+    this.Agente_cnpj = dados.agente_cnpj();
+    this.Status = dados.status();
+
+    return this;
   }
 }
