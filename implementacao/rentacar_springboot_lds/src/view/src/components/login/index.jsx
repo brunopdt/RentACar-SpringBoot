@@ -1,23 +1,22 @@
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useCallback, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useCallback, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { useApi } from '../../api/axiosInstance';
+import { useApi } from "../../api/axiosInstance";
 
 const defaultTheme = createTheme();
 
 const Login = () => {
-
   const [formData, setFormData] = useState({
-    login: '',
-    senha: ''
+    login: "",
+    senha: "",
   });
 
   const navigate = useNavigate();
@@ -26,23 +25,26 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
-    console.log(name, value)
-    console.log(formData)
+    console.log(name, value);
+    console.log(formData);
   };
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    try {
-      const resposta = await useApi.post('/usuarios/login', formData);
-      console.log(resposta)
-      localStorage.setItem("usuario", JSON.stringify(resposta));
-      navigate('/listaPedidos')
-    } catch (error) {
-      console.error('Erro:', error);
-    }
-  }, [formData, navigate]);
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        const resposta = await useApi.post("/usuarios/login", formData);
+        console.log(resposta);
+        localStorage.setItem("usuario", JSON.stringify(resposta));
+        navigate("/listaPedidos");
+      } catch (error) {
+        console.error("Erro:", error);
+      }
+    },
+    [formData, navigate]
+  );
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -51,17 +53,21 @@ const Login = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          </Avatar>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h2">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -90,11 +96,22 @@ const Login = () => {
             >
               LOGAR
             </Button>
+
+            <Button
+              component={Link}
+              to="/cadastro"
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Cadastrar
+            </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
-}
+};
 
-export default Login
+export default Login;
