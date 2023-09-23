@@ -8,12 +8,9 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { FormLabel, MenuItem, Radio, RadioGroup, Select } from "@mui/material";
 import FormCliente from "./components/FormCliente";
 import FormAgente from "./components/FormAgente";
-
-const defaultTheme = createTheme();
+import { Link } from "react-router-dom";
 
 export const Cadastro = () => {
   const [tipoCliente, setTipoCliente] = useState("individual");
@@ -23,7 +20,6 @@ export const Cadastro = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -60,9 +56,18 @@ export const Cadastro = () => {
             <option value="empresarial"> Agente </option>
           </select>
           {tipoCliente === "individual" ? <FormCliente /> : <FormAgente />}
+          <Button
+              component={Link}
+              to="/login"
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 };
 

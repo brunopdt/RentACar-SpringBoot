@@ -2,7 +2,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import { CardActionArea } from '@mui/material'
+import { CardActionArea  } from '@mui/material'
 import ok from '../../../assets/ok.jpg'
 import pending from '../../../assets/pending.jpg'
 import reproved from '../../../assets/reproved.jpg'
@@ -20,7 +20,7 @@ export const PedidoCard = props => {
 
   return (
     <Card sx={{ width: 400 }}>
-      <CardActionArea>
+      <CardActionArea onClick={() => props.onClick()}>
         <CardMedia
           component="img"
           height="140"
@@ -51,5 +51,6 @@ PedidoCard.propTypes = {
   data_inicio: PropTypes.string,
   data_fim: PropTypes.string,
   status: PropTypes.string.isRequired,
-  veiculo_matricula: PropTypes.string
+  veiculo_matricula: PropTypes.string,
+  onClick: PropTypes.func
 }

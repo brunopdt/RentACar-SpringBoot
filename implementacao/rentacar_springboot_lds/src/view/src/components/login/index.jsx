@@ -5,13 +5,10 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useApi } from "../../api/axiosInstance";
-
-const defaultTheme = createTheme();
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -27,8 +24,6 @@ const Login = () => {
       ...formData,
       [name]: value,
     });
-    console.log(name, value);
-    console.log(formData);
   };
 
   const handleSubmit = useCallback(
@@ -47,7 +42,6 @@ const Login = () => {
   );
 
   return (
-    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -110,7 +104,6 @@ const Login = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 };
 

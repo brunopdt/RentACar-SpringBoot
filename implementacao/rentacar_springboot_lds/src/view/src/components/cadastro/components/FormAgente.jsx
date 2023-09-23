@@ -54,7 +54,6 @@ export const FormAgente = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -113,8 +112,6 @@ export const FormAgente = () => {
                 value={formData.tipo}
                 onChange={handleTipoChange}
               >
-                <Radio value="Agente">Agente</Radio>
-                <Radio value="Banco">Banco</Radio>
               </RadioGroup>
               <Select
                 value={formData.tipo}
@@ -137,7 +134,6 @@ export const FormAgente = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 };
 
