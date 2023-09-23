@@ -3,6 +3,7 @@ package lds.rentacar_springboot_lds.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +20,14 @@ import lds.rentacar_springboot_lds.repositories.PedidoRepository;
 import lds.rentacar_springboot_lds.repositories.VeiculoRepository;
 import lds.rentacar_springboot_lds.services.DadosCadastroAgente;
 import lds.rentacar_springboot_lds.services.DadosCadastroPedido;
+import lds.rentacar_springboot_lds.services.DadosEditPedido;
+
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("pedidos")
+@CrossOrigin(origins = "http://localhost:5173")
 public class PedidoController {
 
   @Autowired
@@ -54,6 +60,11 @@ public class PedidoController {
 
     _repositoryPedido.save(new Pedido(dados));
     return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
+
+  @PutMapping(value = "/{id}")
+  public void editarStatus(@PathVariable String id, @RequestBody DadosEditPedido dados) {
+    // TODO: process PUT request
   }
 
 }
