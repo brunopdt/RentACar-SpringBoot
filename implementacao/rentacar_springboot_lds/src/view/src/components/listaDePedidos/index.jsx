@@ -2,6 +2,7 @@ import { PedidoCard } from './components/card'
 import { Box, Button, Dialog } from '@mui/material'
 import { useApi } from '../../api/axiosInstance'
 import { useEffect, useState } from 'react'
+import FormPedido from './components/FormPedido'
 
 export const ListaDePedidos = () => {
   const [pedidos, setPedidos] = useState([])
@@ -55,7 +56,7 @@ export const ListaDePedidos = () => {
         }} onClick={() => setOpendialog(true)}>Criar um novo pedido</Button>
         <Dialog open={openDialog} onClose={() => setOpendialog(false)}>
           <Box sx={{ margin: 5 }}>
-            ALOOO
+            <FormPedido onAtualizar={renderPedidos} fecharDialog={() => setOpendialog(false)}/>
           </Box>
         </Dialog>
         {renderPedidos()}

@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 
 export const PedidoCard = props => {
   const imgSource = {
-    PENDENTE: pending,
+    EM_ANALISE: pending,
     APROVADO: ok,
     REPROVADO: reproved,
     INFO: info
