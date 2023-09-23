@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
+import { PedidoCard } from './components/card'
+import { Box, Button, Dialog } from '@mui/material'
+import { useApi } from '../../api/axiosInstance'
+import { useEffect, useState } from 'react'
 
-const ListaDePedidos = () => {
+export const ListaDePedidos = () => {
+  const [pedidos, setPedidos] = useState([])
+  const [openDialog, setOpendialog] = useState(false)
 
-  const [count, setCount] = useState(0)
+  const loadPedidos = async () => {
+    const resposta = await useApi.get('/pedidos')
+    setPedidos(resposta.data)
+  }
+
+  useEffect(() => {
+    loadPedidos()
+  }, [])
+
+  const renderPedidos = () => {
+    if (pedidos.length === 0) {
+      return (
+        <PedidoCard status="INFO" titulo="Você ainda não tem pedidos abertos" />
+      )
+    }
+
+    return pedidos.map((pedido) => (
+      <PedidoCard
+        key={pedido.idPedido}
+        data_inicio={pedido.data_inicio}
+        data_fim={pedido.data_fim}
+        status={pedido.status}
+        titulo={'Pedido ' + pedido.idPedido}
+        veiculo_matricula={pedido.veiculo_matricula}
+      />
+    ));
+
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="bg-red">
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+          gap: '2rem',
+          margin: 2
+        }}
+      >
+        <Button variant='filled' sx={{
+          bgcolor: "#629662", fontWeight: "bold", color: "white", '&:hover': {
+            backgroundColor: '#436343',
+          },
+        }} onClick={() => setOpendialog(true)}>Criar um novo pedido</Button>
+        <Dialog open={openDialog} onClose={() => setOpendialog(false)}>
+          <Box sx={{ margin: 5 }}>
+            ALOOO
+          </Box>
+        </Dialog>
+        {renderPedidos()}
+      </Box >
     </>
   )
 }
-
-export default ListaDePedidos
