@@ -4,9 +4,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { FormLabel, MenuItem, RadioGroup, Select } from "@mui/material";
+import { FormLabel, MenuItem, RadioGroup, Select, Dialog, Typography } from "@mui/material";
 import { useApi } from "../../../api/axiosInstance";
-
 
 export const FormAgente = () => {
   const [formData, setFormData] = useState({
@@ -17,15 +16,20 @@ export const FormAgente = () => {
     senha: "",
   });
 
+  const [openDialog, setOpendialog] = useState(false)
+
   const navigate = useNavigate();
+
+  const [dialogError, setDialogError] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await useApi.post("/agentes", formData);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
-      console.error("Erro:", error);
+      setDialogError(error.response.data.message)
+      setOpendialog(true)
     }
   }
 
@@ -47,6 +51,11 @@ export const FormAgente = () => {
 
   return (
     <Container component="main">
+      <Dialog className="dialog" open={openDialog} onClose={() => setOpendialog(false)}>
+            <Box sx={{height: "200px", width: "200px", display: "flex",flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
+            <Typography sx={{color: "red", fontSize: 30}}>{dialogError}</Typography>
+            </Box>
+        </Dialog>
       <Box
         sx={{
           marginTop: 8,

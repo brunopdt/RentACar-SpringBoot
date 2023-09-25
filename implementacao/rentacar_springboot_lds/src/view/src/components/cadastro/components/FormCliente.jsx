@@ -5,8 +5,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { Typography } from "@mui/material";
 import { useApi } from "../../../api/axiosInstance";
-
+import { Dialog } from "@mui/material";
 
 const FormCliente = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,10 @@ const FormCliente = () => {
     senha: "",
   });
 
+  const [openDialog, setOpendialog] = useState(false)
+
+  const [dialogError, setDialogError] = useState("")
+
   const navigate = useNavigate();
 
   const handleChange = useCallback((e) => {
@@ -36,7 +41,6 @@ const FormCliente = () => {
   const handleSubmit =
     async (e) => {
       e.preventDefault();
-      console.log(formData);
 
       const rendimentos = [formData.rendimento1];
 
@@ -49,13 +53,14 @@ const FormCliente = () => {
       }
 
       try {
-        const resposta = await useApi.post("/usuarios", {
+        await useApi.post("/usuarios", {
           ...formData, rendimentos
         });
-        console.log(resposta);
-        navigate("/login");
+        navigate("/");
       } catch (error) {
-        console.log("erro", error);
+        setDialogError(error.response.data.message)
+        setOpendialog(true)
+
       }
     }
 
@@ -63,6 +68,14 @@ const FormCliente = () => {
   return (
     <Container onSubmit={handleSubmit} component="form" maxWidth="xs">
       <CssBaseline />
+      <Dialog className="dialog" open={openDialog} onClose={() => setOpendialog(false)}>
+        <Box sx={{ height: "200px", width: "200px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+          <Typography sx={{ color: "red", fontSize: 30 }}>
+            {dialogError}
+          </Typography>
+
+        </Box>
+      </Dialog>
       <Box
         sx={{
           marginTop: 8,
